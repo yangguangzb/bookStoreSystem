@@ -14,6 +14,44 @@
 		document.getElementById("img").src = "${pageContext.request.contextPath}/imageCode?time="
 				+ new Date().getTime();
 	}
+	//验证注册信息
+	function change(){
+		var email=document.getElementById("email").value;
+		var username=document.getElementById("username").value;
+		var password=document.getElementById("password").value;
+		var repassword=document.getElementById("repassword").value;
+		var telephone=document.getElementById("telephone").value;
+		var flag=true;
+		if(email==""||email==null){
+			flag=false;
+			alert("邮箱不能为空");
+			return flag;
+		}
+		if(username==""||email==username){
+			flag=false;
+			alert("用户名不能为空");
+			return flag;
+		}
+		if(password==""||password==null||repassword==""||repassword==null){
+			flag=false;
+			alert("请输入密码");
+			return flag;
+		}
+		if(password!=repassword){
+			flag=false;
+			alert("两次密码不一致");
+			return flag;
+		}
+		if(telephone==""||telephone==null){
+			flag=false;
+			alert("电话不能为空");
+			return flag;
+		}
+		if(flag){
+			document.addForm.submit();
+		}
+		return flag;
+	}
 </script>
 </head>
 
@@ -25,37 +63,38 @@
 
 	<div id="divcontent">
 		<form action="${pageContext.request.contextPath}/register"
-			method="post">
+			method="post" name="addForm">
 			<table width="850px" border="0" cellspacing="0">
 				<tr>
 					<td style="padding:30px">
-						<h1>新会员注册</h1>
+						<%--显示注册失败信息 --%>
+						<h1>新会员注册${user_msg}</h1>
 						
 						<table width="70%" border="0" cellspacing="2" class="upline">
 							<tr>
 								<td style="text-align:right; width:20%">会员邮箱：</td>
 								<td style="width:40%">
 								<input type="text" class="textinput"
-									name="email" /></td>
+									name="email" id="email"/></td>
 								<td><font color="#999999">请输入有效的邮箱地址</font></td>
 							</tr>
 							<tr>
 								<td style="text-align:right">会员名：</td>
 								<td>
-									<input type="text" class="textinput" name="username" />
+									<input type="text" class="textinput" name="username" id="username"/>
 								</td>
 								<td><font color="#999999">用户名设置至少6位</font></td>
 							</tr>
 							<tr>
 								<td style="text-align:right">密码：</td>
 								<td><input type="password" class="textinput"
-									name="password" /></td>
+									name="password" id="password"/></td>
 								<td><font color="#999999">密码设置至少6位</font></td>
 							</tr>
 							<tr>
 								<td style="text-align:right">重复密码：</td>
 								<td><input type="password" class="textinput"
-									name="repassword" /></td>
+									name="repassword" id="repassword"/></td>
 								<td>&nbsp;</td>
 							</tr>
 							<tr>
@@ -68,7 +107,7 @@
 							<tr>
 								<td style="text-align:right">联系电话：</td>
 								<td colspan="2"><input type="text" class="textinput"
-									style="width:350px" name="telephone" /></td>
+									style="width:350px" name="telephone" id="telephone"/></td>
 							</tr>
 							<tr>
 								<td style="text-align:right">个人介绍：</td>
@@ -84,9 +123,9 @@
 						<table width="80%" border="0" cellspacing="2" class="upline">
 							<tr>
 								<td style="text-align:right; width:20%">输入校验码：</td>
-								<td style="width:50%"><input type="text" class="textinput" />
+								<td style="width:50%"><input type="text" class="textinput" name="inputCode"/>
 								</td>
-								<td>&nbsp;</td>
+								<td>${requestScope.codeMsg}</td>
 							</tr>
 							<tr>
 								<td style="text-align:right;width:20%;">&nbsp;</td>
@@ -103,7 +142,7 @@
 						<table width="70%" border="0" cellspacing="0">
 							<tr>
 								<td style="padding-top:20px; text-align:center"><input
-									type="image" src="images/signup.gif" name="submit" border="0">
+									type="image" src="images/signup.gif" name="submit" onclick="change()" border="0">
 								</td>
 							</tr>
 						</table></td>
