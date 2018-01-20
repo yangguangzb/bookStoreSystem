@@ -13,7 +13,7 @@ public class User {
 	private String activeCode; // 激活码
 	private String role; // 用户角色
 	private int state; // 用户状态
-	private Date registTime;// 注册时间S
+	private Date registTime;// 注册时间
 	public int getId() {
 		return id;
 	}
