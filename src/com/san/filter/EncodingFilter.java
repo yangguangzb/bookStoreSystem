@@ -11,7 +11,6 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.sun.net.httpserver.Filter.Chain;
 
 public class EncodingFilter implements Filter{
 
