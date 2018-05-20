@@ -19,7 +19,7 @@
 	<jsp:include page="menu_search.jsp" />
 
 	<div id="divcontent">
-		<form action="product_list.jsp" method="post">
+		<form action="${pageContext.request.contextPath}/loginServlet" method="post">
 			<table width="900px" border="0" cellspacing="0">
 				<tr>
 					<td style="padding:30px"><div style="height:470px">
@@ -37,7 +37,7 @@
 													</tr>
 													<tr>
 														<td style="text-align:center;padding-top:20px;"><font
-															color="#ff0000">${requestScope["register_message"]}</font>
+															color="#ff0000">${requestScope["user_message"]}</font>
 														</td>
 													</tr>
 													<tr>

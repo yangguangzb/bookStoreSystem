@@ -19,8 +19,13 @@ public class LoginServlet extends HttpServlet {
 		String password=request.getParameter("password");
 		try {
 			User user=us.login(username,password);
+			String path="/index.jsp";
+			//权限判断
+			if("admin".equals(user.getRole())){
+				path="/admin/login/home.jsp";
+			}
 			request.getSession().setAttribute("user",user);
-			request.getRequestDispatcher("/index.jsp").forward(request, response);
+			request.getRequestDispatcher(path).forward(request, response);
 		} catch (UserException e) {
 			e.printStackTrace();
 			request.setAttribute("user_message",e.getMessage());
